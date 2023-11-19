@@ -1,12 +1,11 @@
 package med.voll.api.controller;
 
-import med.voll.api.medico.DadosAtualizacaoMedico;
-import med.voll.api.medico.MedicoRepository;
-import med.voll.api.paciente.*;
+import med.voll.api.domain.paciente.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.transaction.Transactional;
@@ -44,5 +43,10 @@ public class PacienteController {
     public void remover(@PathVariable Long id) {
         var paciente = repository.getReferenceById(id);
         paciente.inativar();
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity detalhar(@PathVariable Long id){
+        var paciente = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
     }
 }
