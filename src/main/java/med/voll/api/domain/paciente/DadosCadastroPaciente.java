@@ -6,16 +6,16 @@ import jakarta.validation.constraints.Pattern;
 
 
 public record DadosCadastroPaciente(
-    @NotBlank
+        @NotBlank
     String nome,
-    @NotBlank
+        @NotBlank
     @Email
     String email,
-    @NotBlank
+        @NotBlank
     String telefone,
-    @NotBlank
+        @NotBlank
     @Pattern(regexp = "\\d{11}")
-    String cpf){
+    String cpf, med.voll.api.domain.endereco.DadosEndereco dadosEndereco){
 
 }
 
